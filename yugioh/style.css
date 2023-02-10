@@ -21,4 +21,11 @@ body {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center center;
+}
+
+@media (max-width: 550px) {
+    body {
+        background-image: url('assets/back_ground/arena_phone.jpg');
+    }
 }
