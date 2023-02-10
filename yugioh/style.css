@@ -24,6 +24,12 @@ body {
     background-position: center center;
 }
 
+@media (max-width: 550px) {
+    body {
+        background-image: url('assets/back_ground/arena_phone.jpg');
+    }
+}
+
 div#arena {
     display: flex;
     flex-wrap: wrap;
@@ -31,7 +37,11 @@ div#arena {
     align-content: space-evenly;
 }
 
-div.card {
+input[type=checkbox]{
+    display: inline;
+}
+
+label.card {
     background-color: black;
     background-image: url('assets/cards/back_card.jpg');
 
@@ -41,44 +51,38 @@ div.card {
     height: 234px;
 
 }
-div#dark_magician:hover {
+label[for=dark_magician] {
     background-color: black;
     background-image: url('assets/cards/dark_magician.jpg');
     background-size: cover;
 }
-div#dark_magician_girl:hover {
+label#dark_magician_girl:hover {
     background-color: black;
     background-image: url('assets/cards/dark_magician_girl.jpg');
     background-size: cover;
 }
 
 
-div#dragon:hover {
+label#dragon:hover {
     background-color: black;
     background-image: url('assets/cards/dragon.jpg');
     background-size: cover;
 }
 
-div#exodia:hover {
+label#exodia:hover {
     background-color: black;
     background-image: url('assets/cards/exodia.jpg');
     background-size: cover;
 }
 
-div#kuriboh:hover {
+label#kuriboh:hover {
     background-color: black;
     background-image: url('assets/cards/kuriboh.jpg');
     background-size: cover;
 }
 
-div#skull:hover {
+label#skull:hover {
     background-color: black;
     background-image: url('assets/cards/skull.jpg');
     background-size: cover;
-}
-
-@media (max-width: 550px) {
-    body {
-        background-image: url('assets/back_ground/arena_phone.jpg');
-    }
 }
