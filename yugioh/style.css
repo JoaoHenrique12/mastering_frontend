@@ -24,6 +24,59 @@ body {
     background-position: center center;
 }
 
+div#arena {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: space-evenly;
+}
+
+div.card {
+    background-color: black;
+    background-image: url('assets/cards/back_card.jpg');
+
+    margin: 5px;
+
+    width: 160px;
+    height: 234px;
+
+}
+div#dark_magician:hover {
+    background-color: black;
+    background-image: url('assets/cards/dark_magician.jpg');
+    background-size: cover;
+}
+div#dark_magician_girl:hover {
+    background-color: black;
+    background-image: url('assets/cards/dark_magician_girl.jpg');
+    background-size: cover;
+}
+
+
+div#dragon:hover {
+    background-color: black;
+    background-image: url('assets/cards/dragon.jpg');
+    background-size: cover;
+}
+
+div#exodia:hover {
+    background-color: black;
+    background-image: url('assets/cards/exodia.jpg');
+    background-size: cover;
+}
+
+div#kuriboh:hover {
+    background-color: black;
+    background-image: url('assets/cards/kuriboh.jpg');
+    background-size: cover;
+}
+
+div#skull:hover {
+    background-color: black;
+    background-image: url('assets/cards/skull.jpg');
+    background-size: cover;
+}
+
 @media (max-width: 550px) {
     body {
         background-image: url('assets/back_ground/arena_phone.jpg');
