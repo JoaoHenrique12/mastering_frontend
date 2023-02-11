@@ -51,37 +51,37 @@ label.card {
     height: 234px;
 
 }
+
 label[for=dark_magician] {
     background-color: black;
     background-image: url('assets/cards/dark_magician.jpg');
     background-size: cover;
 }
-label#dark_magician_girl:hover {
+label[for=dark_magician_girl] {
     background-color: black;
     background-image: url('assets/cards/dark_magician_girl.jpg');
     background-size: cover;
 }
 
-
-label#dragon:hover {
+label[for=dragon] {
     background-color: black;
     background-image: url('assets/cards/dragon.jpg');
     background-size: cover;
 }
 
-label#exodia:hover {
+label[for=exodia] {
     background-color: black;
     background-image: url('assets/cards/exodia.jpg');
     background-size: cover;
 }
 
-label#kuriboh:hover {
+label[for=kuriboh] {
     background-color: black;
     background-image: url('assets/cards/kuriboh.jpg');
     background-size: cover;
 }
 
-label#skull:hover {
+label[for=skull] {
     background-color: black;
     background-image: url('assets/cards/skull.jpg');
     background-size: cover;
