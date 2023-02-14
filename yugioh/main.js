@@ -15,7 +15,30 @@ function flip_card(e) {
 }
 
 function clone_cards(){
-    console.log("clonning.");
+    console.log("Clonning.");
+
+    check_boxes = document.querySelectorAll('input[type=checkbox]');
+    for( check_box of check_boxes){
+        console.log("Create checkbox:" + check_box.getAttribute('id'));
+
+        let input = check_box.cloneNode(true);
+        input.setAttribute("id", `${check_box.getAttribute('id')}-twin`);
+
+        check_box.after(input);
+    }
+
+    label_cards = document.querySelectorAll('label.card');
+    for (label_card of label_cards) {
+        console.log("Create label :" + label_card.getAttribute('for'));
+
+        let label = label_card.cloneNode(true);
+        label.setAttribute('for', `${label.getAttribute('for')}-twin`);
+
+        label.style.backgroundImage = `url(assets/cards/${label_card.getAttribute('for')}.jpg)`;
+        label.style.backgroundSize = 'cover';
+
+        label_card.after(label);
+    }
 }
 
 function destroy_card (card_label) {
