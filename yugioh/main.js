@@ -35,7 +35,6 @@ function clone_cards(){
         label.setAttribute('for', `${label.getAttribute('for')}-twin`);
 
         label.style.backgroundImage = `url(assets/cards/${label_card.getAttribute('for')}.jpg)`;
-        label.style.backgroundSize = 'cover';
 
         label_card.after(label);
     }
