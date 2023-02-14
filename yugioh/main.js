@@ -1,13 +1,65 @@
 function add_listeners(){
     let label = document.querySelectorAll("label.card");
+    let check_boxes = document.querySelectorAll("input[type=checkbox]");
 
 
     for (l of label)
         l.addEventListener('click', flip_card);
+
+    for (c of check_boxes)
+        c.addEventListener('change', check_match);
 }
 
-
 // Functions
+
+function check_twin_strings(smaller_string,bigger_string){
+
+    let sufix_twin = "-twin";
+
+    if (smaller_string.length > bigger_string.length) {
+        [smaller_string, bigger_string] = [bigger_string,smaller_string];
+    }
+
+    let i = 0;
+    while ( smaller_string[i] === bigger_string[i] && i < smaller_string.length)
+        i++;
+
+    while ( bigger_string[i] === sufix_twin[i - smaller_string.length] && i < bigger_string.length)
+        i++;
+    
+    if ( i === bigger_string.length)
+        return true;
+
+    return false;
+}
+
+function check_match(e) {
+    cards_fliped = []
+
+    check_boxes = document.querySelectorAll('input[type=checkbox]:checked');
+
+    for ( check_box of check_boxes ) {
+        cards_fliped.push(document.querySelector(`label[for=${check_box.getAttribute('id')}]`));
+    }
+
+    if ( cards_fliped.length !== 2 )
+        return;
+
+    console.log("Entrei");
+    console.log(cards_fliped);
+
+    let card2 = cards_fliped.pop();
+    let card1 = cards_fliped.pop();
+
+    let card_name1 = card2.getAttribute('for');
+    let card_name2 = card1.getAttribute('for');
+
+    
+    if ( check_twin_strings( card_name1, card_name2 ) ) 
+        { destroy_card(card1); destroy_card(card2); }
+    else 
+        { card1.click(); card2.click(); }
+}
 
 function flip_card(e) {
     img = this.querySelector('img[alt=back]');
