@@ -38,11 +38,7 @@ div#arena {
     align-content: space-evenly;
 }
 
-input[type=checkbox]{
-    display: inline;
-}
-
-label.card {
+div.card {
     background-color: black;
     background-image: url('assets/cards/back_card.jpg');
     background-size: cover;
@@ -54,25 +50,25 @@ label.card {
 
 }
 
-label[for=dark_magician] {
+div#dark_magician {
     background-image: url('assets/cards/dark_magician.jpg');
 }
-label[for=dark_magician_girl] {
+div#dark_magician_girl {
     background-image: url('assets/cards/dark_magician_girl.jpg');
 }
 
-label[for=dragon] {
+div#dragon {
     background-image: url('assets/cards/dragon.jpg');
 }
 
-label[for=exodia] {
+div#exodia {
     background-image: url('assets/cards/exodia.jpg');
 }
 
-label[for=kuriboh] {
+div#kuriboh {
     background-image: url('assets/cards/kuriboh.jpg');
 }
 
-label[for=skull] {
+div#skull {
     background-image: url('assets/cards/skull.jpg');
 }

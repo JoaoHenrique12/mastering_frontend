@@ -1,16 +1,44 @@
 function add_listeners(){
-    let label = document.querySelectorAll("label.card");
-    let check_boxes = document.querySelectorAll("input[type=checkbox]");
+    let div = document.querySelectorAll("div.card");
 
-
-    for (l of label)
+    for (l of div)
         l.addEventListener('click', flip_card);
-
-    for (c of check_boxes)
-        c.addEventListener('change', check_match);
 }
 
 // Functions
+
+function capture_active_cards () {
+
+    let all_cards = document.querySelectorAll("div.card");
+
+    let cards_fliped = [];
+
+    for( c of all_cards){
+        let img = c.querySelector('img[alt=back]');
+        if( img.style.visibility === 'hidden')
+            cards_fliped.push(c);
+    }
+
+    console.log(cards_fliped);
+
+    if ( cards_fliped.length === 2 )
+        setTimeout(check_match, 600, cards_fliped);
+
+}
+
+function check_match(cards_fliped) {
+
+    let card1 = cards_fliped.pop();
+    let card2 = cards_fliped.pop();
+
+    let card_name1 = card2.getAttribute('id');
+    let card_name2 = card1.getAttribute('id');
+
+    if ( check_twin_strings( card_name1, card_name2 ) ) 
+        { card1.remove(); card2.remove(); }
+    else 
+        { card1.click(); card2.click(); }
+}
 
 function check_twin_strings(smaller_string,bigger_string){
 
@@ -33,69 +61,31 @@ function check_twin_strings(smaller_string,bigger_string){
     return false;
 }
 
-function check_match(e) {
-    cards_fliped = []
-
-    check_boxes = document.querySelectorAll('input[type=checkbox]:checked');
-
-    for ( check_box of check_boxes ) {
-        cards_fliped.push(document.querySelector(`label[for=${check_box.getAttribute('id')}]`));
+function flip_card(element) {
+    console.log("Flip card");
+    let img = undefined;
+    try {
+        img = this.querySelector('img[alt=back]');
+    }catch(error) {
+        img = element.querySelector('img[alt=back]');
     }
-
-    if ( cards_fliped.length !== 2 )
-        return;
-
-    console.log("Entrei");
-    console.log(cards_fliped);
-
-    let card2 = cards_fliped.pop();
-    let card1 = cards_fliped.pop();
-
-    let card_name1 = card2.getAttribute('for');
-    let card_name2 = card1.getAttribute('for');
-
-    
-    if ( check_twin_strings( card_name1, card_name2 ) ) 
-        { destroy_card(card1); destroy_card(card2); }
-    else 
-        { card1.click(); card2.click(); }
-}
-
-function flip_card(e) {
-    img = this.querySelector('img[alt=back]');
     img.style.visibility = (img.style.visibility === 'hidden') ? 'visible' : 'hidden';
+
+    capture_active_cards();
 }
 
 function clone_cards(){
-    console.log("Clonning.");
+    console.log("Clonning cards.");
 
-    check_boxes = document.querySelectorAll('input[type=checkbox]');
-    for( check_box of check_boxes){
-        console.log("Create checkbox:" + check_box.getAttribute('id'));
+    div_cards = document.querySelectorAll('div.card');
+    for (div_card of div_cards) {
+        console.log("Create div :" + div_card.getAttribute('id'));
 
-        let input = check_box.cloneNode(true);
-        input.setAttribute("id", `${check_box.getAttribute('id')}-twin`);
+        let div = div_card.cloneNode(true);
+        div.setAttribute('id', `${div.getAttribute('id')}-twin`);
 
-        check_box.after(input);
+        div.style.backgroundImage = `url(assets/cards/${div_card.getAttribute('id')}.jpg)`;
+
+        div_card.after(div);
     }
-
-    label_cards = document.querySelectorAll('label.card');
-    for (label_card of label_cards) {
-        console.log("Create label :" + label_card.getAttribute('for'));
-
-        let label = label_card.cloneNode(true);
-        label.setAttribute('for', `${label.getAttribute('for')}-twin`);
-
-        label.style.backgroundImage = `url(assets/cards/${label_card.getAttribute('for')}.jpg)`;
-
-        label_card.after(label);
-    }
-}
-
-function destroy_card (card_label) {
-    id_checkbox = card_label.getAttribute('for');
-    checkbox = document.querySelector(`input#${id_checkbox}`);
-
-    checkbox.remove();
-    card_label.remove();
 }
