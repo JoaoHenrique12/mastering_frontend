@@ -5,6 +5,14 @@ function add_listeners(){
         l.addEventListener('click', flip_card);
 }
 
+function stop_listeners() {
+    let div = document.querySelectorAll("div.card");
+
+    for (l of div)
+        l.removeEventListener('click', flip_card);
+    
+}
+
 // Functions
 
 function capture_active_cards () {
@@ -21,8 +29,13 @@ function capture_active_cards () {
 
     console.log(cards_fliped);
 
+
     if ( cards_fliped.length === 2 )
+    {
+        stop_listeners();
         setTimeout(check_match, 600, cards_fliped);
+        setTimeout(add_listeners, 599);
+    }
 
 }
 
