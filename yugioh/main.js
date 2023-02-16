@@ -27,9 +27,6 @@ function capture_active_cards () {
             cards_fliped.push(c);
     }
 
-    console.log(cards_fliped);
-
-
     if ( cards_fliped.length === 2 )
     {
         stop_listeners();
@@ -75,7 +72,6 @@ function check_twin_strings(smaller_string,bigger_string){
 }
 
 function flip_card(element) {
-    console.log("Flip card");
     let img = undefined;
     try {
         img = this.querySelector('img[alt=back]');
@@ -101,4 +97,37 @@ function clone_cards(){
 
         div_card.after(div);
     }
+}
+
+function shuffle(array) {
+    array = Array.from(array);
+
+    let new_array = [];
+
+    while(array.length !== 0 )
+    {
+        randomIndex = Math.floor(Math.random() * array.length);
+        new_array.push(array[randomIndex]);
+        array.splice(randomIndex,1);
+    }
+
+    return new_array;
+}
+
+function shuffle_cards() {
+    console.log("Shuffling cards.");
+
+    let div_cards = document.querySelectorAll('div.card');
+    let shuffled_cards = shuffle(div_cards);
+
+    console.log(shuffled_cards);
+
+    for ( card of div_cards )
+        card.remove();
+
+    let arena = document.querySelector('div#arena');
+    for ( card of shuffled_cards )
+        arena.appendChild(card);
+
+
 }
