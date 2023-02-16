@@ -3,6 +3,9 @@ function add_listeners(){
 
     for (l of div)
         l.addEventListener('click', flip_card);
+
+    for (l of div)
+        l.addEventListener('click', check_match);
 }
 
 function stop_listeners() {
@@ -11,6 +14,8 @@ function stop_listeners() {
     for (l of div)
         l.removeEventListener('click', flip_card);
     
+    for (l of div)
+        l.removeEventListener('click', check_match);
 }
 
 // Global Variables
@@ -18,6 +23,33 @@ function stop_listeners() {
 var global_number_replics = 0;
 
 // Functions
+
+function check_match(){
+    let cards_fliped =  capture_active_cards();
+
+    if( cards_fliped.length < 2)
+        return;
+
+    let are_twin = check_twin_cards(cards_fliped);
+
+    cards_fliped = cards_fliped.sort();
+    if( cards_fliped[0] != cards_fliped[1])
+        cards_fliped = cards_fliped.reverse();
+
+    if ( !are_twin )
+    {
+        stop_listeners();
+        setTimeout(function(cards_fliped) {for(c of cards_fliped) flip_card(c)}, 600,cards_fliped);
+        setTimeout(add_listeners, 599);
+    }
+    else if ( are_twin && (global_number_replics + 1) === cards_fliped.length)
+    {
+        stop_listeners();
+        setTimeout(function(cards_fliped) {for(c of cards_fliped) c.remove()}, 600,cards_fliped);
+        setTimeout(add_listeners, 599);
+    }
+
+}
 
 function flip_card(element) {
     let img = undefined;
@@ -27,26 +59,6 @@ function flip_card(element) {
         img = element.querySelector('img[alt=back]');
     }
     img.style.visibility = (img.style.visibility === 'hidden') ? 'visible' : 'hidden';
-
-    let cards_fliped =  capture_active_cards();
-
-    if( cards_fliped.length < 2)
-        return;
-
-    let are_twin = check_twin_cards(cards_fliped);
-
-    if ( !are_twin )
-    {
-        stop_listeners();
-        setTimeout(function(cards_fliped) {for(c of cards_fliped) c.click()}, 600,cards_fliped);
-        setTimeout(add_listeners, 599);
-    }
-    else if ( are_twin && (global_number_replics + 1) === cards_fliped.length)
-    {
-        stop_listeners();
-        setTimeout(function(cards_fliped) {for(c of cards_fliped) c.remove()}, 600,cards_fliped);
-        setTimeout(add_listeners, 599);
-    }
 }
 
 function capture_active_cards () {
