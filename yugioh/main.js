@@ -13,7 +13,41 @@ function stop_listeners() {
     
 }
 
+// Global Variables
+
+var global_number_replics = 0;
+
 // Functions
+
+function flip_card(element) {
+    let img = undefined;
+    try {
+        img = this.querySelector('img[alt=back]');
+    }catch(error) {
+        img = element.querySelector('img[alt=back]');
+    }
+    img.style.visibility = (img.style.visibility === 'hidden') ? 'visible' : 'hidden';
+
+    let cards_fliped =  capture_active_cards();
+
+    if( cards_fliped.length < 2)
+        return;
+
+    let are_twin = check_twin_cards(cards_fliped);
+
+    if ( !are_twin )
+    {
+        stop_listeners();
+        setTimeout(function(cards_fliped) {for(c of cards_fliped) c.click()}, 600,cards_fliped);
+        setTimeout(add_listeners, 599);
+    }
+    else if ( are_twin && (global_number_replics + 1) === cards_fliped.length)
+    {
+        stop_listeners();
+        setTimeout(function(cards_fliped) {for(c of cards_fliped) c.remove()}, 600,cards_fliped);
+        setTimeout(add_listeners, 599);
+    }
+}
 
 function capture_active_cards () {
 
@@ -27,91 +61,29 @@ function capture_active_cards () {
             cards_fliped.push(c);
     }
 
-    if ( cards_fliped.length === 2 )
-    {
-        stop_listeners();
-        setTimeout(check_match, 600, cards_fliped);
-        setTimeout(add_listeners, 599);
-    }
-
+    return cards_fliped;
 }
 
-function check_match(cards_fliped) {
-
-    let card1 = cards_fliped.pop();
-    let card2 = cards_fliped.pop();
-
-    let card_name1 = card2.getAttribute('id');
-    let card_name2 = card1.getAttribute('id');
-
-    if ( check_twin_strings( card_name1, card_name2 ) ) 
-        { card1.remove(); card2.remove(); }
-    else 
-        { card1.click(); card2.click(); }
+function check_twin_cards(cards_fliped){
+    let name = cards_fliped[0].classList[1];
+    for (let c of cards_fliped)
+        if (c.classList[1] != name)
+            return false;
+    return true;
 }
 
-function check_twin_strings(smaller_string,bigger_string){
-
-    let sufix_twin = "-twin";
-
-    if (smaller_string.length > bigger_string.length) {
-        [smaller_string, bigger_string] = [bigger_string,smaller_string];
-    }
-
-    let i = 0;
-    while ( smaller_string[i] === bigger_string[i] && i < smaller_string.length)
-        i++;
-
-    while ( bigger_string[i] === sufix_twin[i - smaller_string.length] && i < bigger_string.length)
-        i++;
-    
-    if ( i === bigger_string.length)
-        return true;
-
-    return false;
-}
-
-function flip_card(element) {
-    let img = undefined;
-    try {
-        img = this.querySelector('img[alt=back]');
-    }catch(error) {
-        img = element.querySelector('img[alt=back]');
-    }
-    img.style.visibility = (img.style.visibility === 'hidden') ? 'visible' : 'hidden';
-
-    capture_active_cards();
-}
-
-function clone_cards(){
+function clone_cards(number_replics){
     console.log("Clonning cards.");
+
+    global_number_replics = number_replics;
 
     div_cards = document.querySelectorAll('div.card');
     for (div_card of div_cards) {
-        console.log("Create div :" + div_card.getAttribute('id'));
+        console.log("Create div :" + div_card.classList[1]);
 
-        let div = div_card.cloneNode(true);
-        div.setAttribute('id', `${div.getAttribute('id')}-twin`);
-
-        div.style.backgroundImage = `url(assets/cards/${div_card.getAttribute('id')}.jpg)`;
-
-        div_card.after(div);
+        for(let  i of Array(number_replics).keys())
+            { let div = div_card.cloneNode(true); div_card.after(div); }
     }
-}
-
-function shuffle(array) {
-    array = Array.from(array);
-
-    let new_array = [];
-
-    while(array.length !== 0 )
-    {
-        randomIndex = Math.floor(Math.random() * array.length);
-        new_array.push(array[randomIndex]);
-        array.splice(randomIndex,1);
-    }
-
-    return new_array;
 }
 
 function shuffle_cards() {
@@ -128,6 +100,19 @@ function shuffle_cards() {
     let arena = document.querySelector('div#arena');
     for ( card of shuffled_cards )
         arena.appendChild(card);
+}
 
+function shuffle(array) {
+    array = Array.from(array);
 
+    let new_array = [];
+
+    while(array.length !== 0 )
+    {
+        randomIndex = Math.floor(Math.random() * array.length);
+        new_array.push(array[randomIndex]);
+        array.splice(randomIndex,1);
+    }
+
+    return new_array;
 }

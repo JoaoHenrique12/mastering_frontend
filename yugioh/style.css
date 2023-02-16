@@ -50,25 +50,25 @@ div.card {
 
 }
 
-div#dark_magician {
+div.dark_magician {
     background-image: url('assets/cards/dark_magician.jpg');
 }
-div#dark_magician_girl {
+div.dark_magician_girl {
     background-image: url('assets/cards/dark_magician_girl.jpg');
 }
 
-div#dragon {
+div.dragon {
     background-image: url('assets/cards/dragon.jpg');
 }
 
-div#exodia {
+div.exodia {
     background-image: url('assets/cards/exodia.jpg');
 }
 
-div#kuriboh {
+div.kuriboh {
     background-image: url('assets/cards/kuriboh.jpg');
 }
 
-div#skull {
+div.skull {
     background-image: url('assets/cards/skull.jpg');
 }
