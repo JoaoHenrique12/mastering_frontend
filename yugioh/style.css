@@ -37,7 +37,7 @@ div#arena {
     justify-content: center;
     align-content: space-evenly;
 }
-div#end_game {
+div#end_game, div#hello_player {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -71,13 +71,13 @@ div#end_game > ul > li::before {
     content: '\2192';
 }
 
-div#end_game > h1 {
+div#end_game > h1, div#hello_player > h1 {
     font-size: 2em;
     font-family: var(--font-title);
     text-align: center;
 }
 
-div#end_game > a {
+div#end_game > a, div#hello_player > a {
     border-radius: 3px;
     margin: auto;
 
@@ -91,7 +91,7 @@ div#end_game > a {
     text-align: center;
     font-size: 2.4em;
 }
-div#end_game > a:hover {
+div#end_game > a:hover, div#hello_player > a:hover {
     background-color: rgb(178, 238, 59);
     box-shadow: 7px 7px 7px black;
     transition: 750ms;

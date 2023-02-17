@@ -8,59 +8,66 @@
     <title>Yu-gi-oh</title>
 
     <link rel="stylesheet" href="style.css">
-    <script src="main.js"></script>
+
+    <style>
+        div#hello_player {
+            visibility: visible;
+        }
+        input {
+            border-radius: 3px;
+            max-width: 170px;
+            height: 2em;
+            margin: auto;
+            text-align: center;
+        }
+        input::placeholder {
+            text-align: center;
+        }
+
+        input:focus{
+            outline: none;
+            box-shadow: 5px 5px 5px black;
+        }
+        div#info {
+            border-radius: 5px;
+            margin:auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: rgba(178, 238, 59, 0.623);
+            width: 75%;
+            height: 40%;
+        }
+    </style>
+    <script>
+        function save_data () {
+            let name = document.querySelector("input#name").value;
+            let replics = document.querySelector("input#twin").value;
+            
+            const regex = new RegExp('[0-9]{1,2}');
+            const regex_name = new RegExp('[a-zA-z0-9]+');
+
+            if( !regex.test(replics) )
+                replics = 1;
+
+            if( !regex_name.test(name) )
+                name = 'Anonymous';
+
+
+            sessionStorage.setItem("player_name", name);
+            sessionStorage.setItem("replics", replics);
+        }
+    </script>
 </head>
-<body onload="clone_cards(1);shuffle_cards(); add_listeners();">
-
-    <div id="arena">
-        <div class="card dark_magician">
-            <img src="assets/cards/back_card.jpg" alt="back">
-
-        </div>
-        <div class="card dark_magician_girl">
-            <img src="assets/cards/back_card.jpg" alt="back">
+<body >
+    <div id="hello_player" style="visibility: visible;">
+        <h1>Game settings</h1>
+        <div id="info">
+            <input type="text" name="name" id="name" placeholder="Username" autocomplete="off"><br>
+            <input type="text" name="twin" id="twin" maxlength="2" placeholder="Number of replics per card">
 
         </div>
-
-        <div class="card dragon">
-            <img src="assets/cards/back_card.jpg" alt="back">
-
-        </div>
-
-        <div class="card exodia">
-            <img src="assets/cards/back_card.jpg" alt="back">
-
-        </div>
-
-        <div class="card kuriboh">
-            <img src="assets/cards/back_card.jpg" alt="back">
-
-        </div>
-
-        <div class="card skull">
-            <img src="assets/cards/back_card.jpg" alt="back">
-
-        </div>
-
-    </div>
-
-    <div id="end_game">
-        <h1>You won!!!</h1>
-        <p>
-            Hey <strong>player_name</strong>, you used <strong>time_spend</strong>  and <strong>number_clicks</strong> clicks to complete this game.
-        </p>
-        <hr>
-        <p style="text-align: center;">
-            What about try harder ?
-        </p>
-        <hr>
-        <ul>
-            <li>Increasing the number of twin cards</li>
-            <li>Reducing the number of clicks</li>
-            <li>Reducing the time spend</li>
-        </ul>
-        <a href="index.html">Restart game</a>
-        <a href="#">Back to menu</a>
+        <a href="game.html" onclick="save_data();">Start game</a>
     </div>
 </body>
 </html>

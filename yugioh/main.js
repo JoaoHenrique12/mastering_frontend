@@ -93,10 +93,14 @@ function check_twin_cards(cards_fliped){
     return true;
 }
 
-function clone_cards(number_replics){
+function clone_cards(){
     console.log("Clonning cards.");
 
+    number_replics = Number(sessionStorage.getItem('replics'));
     global_number_replics = number_replics;
+
+    console.log(sessionStorage.getItem('player_name'));
+    console.log(global_number_replics);
 
     div_cards = document.querySelectorAll('div.card');
     for (div_card of div_cards) {

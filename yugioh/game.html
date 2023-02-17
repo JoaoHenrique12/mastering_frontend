@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/assets/icon.png" type="image/x-icon">
+    <title>Yu-gi-oh</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+</head>
+<body onload="clone_cards();shuffle_cards(); add_listeners();">
+
+    <div id="arena">
+        <div class="card dark_magician">
+            <img src="assets/cards/back_card.jpg" alt="back">
+
+        </div>
+        <div class="card dark_magician_girl">
+            <img src="assets/cards/back_card.jpg" alt="back">
+
+        </div>
+
+        <div class="card dragon">
+            <img src="assets/cards/back_card.jpg" alt="back">
+
+        </div>
+
+        <div class="card exodia">
+            <img src="assets/cards/back_card.jpg" alt="back">
+
+        </div>
+
+        <div class="card kuriboh">
+            <img src="assets/cards/back_card.jpg" alt="back">
+
+        </div>
+
+        <div class="card skull">
+            <img src="assets/cards/back_card.jpg" alt="back">
+
+        </div>
+
+    </div>
+
+    <div id="end_game">
+        <h1>You won!!!</h1>
+        <p>
+            Hey <strong>player_name</strong>, you used <strong>time_spend</strong>  and <strong>number_clicks</strong> clicks to complete this game. By the way, 
+            each card have <strong>number_replics</strong>  replics.
+        </p>
+        <hr>
+        <p style="text-align: center;">
+            What about try harder ?
+        </p>
+        <hr>
+        <ul>
+            <li>Increasing the number of twin cards</li>
+            <li>Reducing the number of clicks</li>
+            <li>Reducing the time spend</li>
+        </ul>
+        <a href="game.html">Restart game</a>
+        <a href="index.html">Back to menu</a>
+    </div>
+</body>
+</html>
