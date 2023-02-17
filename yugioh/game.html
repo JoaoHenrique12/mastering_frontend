@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="main.js"></script>
 </head>
-<body onload="clone_cards();shuffle_cards(); add_listeners();">
+<body onload="clone_cards();shuffle_cards(); add_listeners();start_timer();">
 
     <div id="arena">
         <div class="card dark_magician">
@@ -47,8 +47,10 @@
     <div id="end_game">
         <h1>You won!!!</h1>
         <p>
-            Hey <strong>player_name</strong>, you used <strong>time_spend</strong>  and <strong>number_clicks</strong> clicks to complete this game. By the way, 
-            each card have <strong>number_replics</strong>  replics.
+            Hey <strong>player_name</strong>, <br> 
+            Time spent: <strong>time_spent</strong><br>
+            Number of clicks: <strong>number_clicks</strong><br>
+            Number of replics: <strong>number_replics</strong>
         </p>
         <hr>
         <p style="text-align: center;">

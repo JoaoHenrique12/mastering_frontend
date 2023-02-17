@@ -20,16 +20,62 @@ function stop_listeners() {
 
 var global_number_replics = 0;
 var global_number_clicks = 0;
+var global_init_time;
 
 // Functions
 
-//lllll
+function start_timer() {
+    let div = document.querySelectorAll("div.card");
+    global_init_time = (new Date).getTime();
+    for (l of div) 
+        l.addEventListener('click', count_click);
+}
+
+function count_click(){
+    global_number_clicks++;
+}
+
+function miliseconds_format(ms) {
+
+    ms = Number(ms);
+
+    let minutes = Math.floor((ms / 1000 / 60) % 60);
+    let seconds =  Math.floor((ms / 1000) % 60);
+
+    if ( minutes <= 0 )
+        minutes = '00';
+    else if (minutes < 10)
+        minutes = '0' + minutes;
+
+    if ( seconds <= 0 )
+        seconds = '00';
+    else if (seconds < 10)
+        seconds = '0' + seconds;
+
+
+    let formated = minutes + ':' + seconds;
+
+    return formated;
+}
+
 function check_win() {
     let number_cards_arena = document.querySelector("div#arena").childElementCount;
 
     if (number_cards_arena === 0) {
+        let player_name = sessionStorage.getItem('player_name');
+        let total_time =  miliseconds_format((new Date).getTime() - global_init_time);
+
         let div_win = document.querySelector("div#end_game");
         div_win.style.visibility = 'visible';
+
+        let text_div_win = div_win.querySelector('p');
+
+        text_div_win.innerHTML = text_div_win.innerHTML.replace('player_name', player_name);
+        text_div_win.innerHTML = text_div_win.innerHTML.replace('time_spent', total_time);
+        text_div_win.innerHTML = text_div_win.innerHTML.replace('number_clicks', global_number_clicks);
+        text_div_win.innerHTML = text_div_win.innerHTML.replace('number_replics', global_number_replics);
+
+        console.log(text_div_win.innerHTML);
     }
 }
 
@@ -99,8 +145,6 @@ function clone_cards(){
     number_replics = Number(sessionStorage.getItem('replics'));
     global_number_replics = number_replics;
 
-    console.log(sessionStorage.getItem('player_name'));
-    console.log(global_number_replics);
 
     div_cards = document.querySelectorAll('div.card');
     for (div_card of div_cards) {
