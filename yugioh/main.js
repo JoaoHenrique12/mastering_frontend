@@ -1,28 +1,37 @@
 function add_listeners(){
     let div = document.querySelectorAll("div.card");
 
-    for (l of div)
+    for (l of div) {
         l.addEventListener('click', flip_card);
-
-    for (l of div)
         l.addEventListener('click', check_match);
-}
+    }
 
+}
 function stop_listeners() {
     let div = document.querySelectorAll("div.card");
 
-    for (l of div)
+    for (l of div) {
         l.removeEventListener('click', flip_card);
-    
-    for (l of div)
         l.removeEventListener('click', check_match);
+    }
 }
 
 // Global Variables
 
 var global_number_replics = 0;
+var global_number_clicks = 0;
 
 // Functions
+
+//lllll
+function check_win() {
+    let number_cards_arena = document.querySelector("div#arena").childElementCount;
+
+    if (number_cards_arena === 0) {
+        let div_win = document.querySelector("div#end_game");
+        div_win.style.visibility = 'visible';
+    }
+}
 
 function check_match(){
     let cards_fliped =  capture_active_cards();
@@ -45,7 +54,7 @@ function check_match(){
     else if ( are_twin && (global_number_replics + 1) === cards_fliped.length)
     {
         stop_listeners();
-        setTimeout(function(cards_fliped) {for(c of cards_fliped) c.remove()}, 600,cards_fliped);
+        setTimeout(function(cards_fliped) {for(c of cards_fliped) c.remove();check_win();}, 600,cards_fliped);
         setTimeout(add_listeners, 599);
     }
 
