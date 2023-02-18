@@ -142,8 +142,9 @@ function check_twin_cards(cards_fliped){
 function clone_cards(){
     console.log("Clonning cards.");
 
-    number_replics = Number(sessionStorage.getItem('replics'));
+    number_replics = Number(sessionStorage.getItem('replics')) >= 1 ? Number(sessionStorage.getItem('replics'))  : 1;
     global_number_replics = number_replics;
+    console.log(number_replics);
 
 
     div_cards = document.querySelectorAll('div.card');
