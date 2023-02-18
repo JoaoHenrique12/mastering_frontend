@@ -38,11 +38,9 @@ div#arena {
     align-content: space-evenly;
 }
 div#end_game, div#hello_player {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-evenly;
-
-    visibility: hidden;
 
     height: 90vh;
     width: 75vw;

@@ -66,7 +66,7 @@ function check_win() {
         let total_time =  miliseconds_format((new Date).getTime() - global_init_time);
 
         let div_win = document.querySelector("div#end_game");
-        div_win.style.visibility = 'visible';
+        div_win.style.display = 'flex';
 
         let text_div_win = div_win.querySelector('p');
 
