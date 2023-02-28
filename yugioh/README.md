@@ -5,7 +5,7 @@ It was created as a pratice for HTML, CSS and JS. Below there is some
 links and tips wich I used to build it.
 
 In initial page is possible configure a number of replics per card, the default
-value is one. Your username is taken to formate win message at end game.
+value is one. Your username is taken to format win message at end game.
 
 
 Site used to take cards images: [yu-gi-oh](https://www.formatlibrary.com/cards/)
