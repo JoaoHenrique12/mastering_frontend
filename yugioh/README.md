@@ -1,5 +1,6 @@
 # Info
 
+
 This small project is a simple memory game based on cards of yu-gi-oh anime.
 It was created as a pratice for HTML, CSS and JS. Below there is some
 links and tips wich I used to build it.
@@ -10,11 +11,29 @@ value is one. Your username is taken to format win message at end game.
 
 Site used to take cards images: [yu-gi-oh](https://www.formatlibrary.com/cards/)
 
+![yugi](assets/yugi.jpg)
+
+## Wrap up
+
+The main knowledge used to build it was concernig of:
+- Add/Remove elements from HTML page.
+- Change CSS values through JS.
+- How to enable/disable events listeners to avoid user interact with web page during a amount of time.
+- Array handling for shuffle cards and execute a for each.
+- About CSS: Basic usage of flexbox and background images.
+- QuerySelector to capture elements.
+
+Some enhance poits of it's project are:
+- Mobile usage, for phones using portraint mode each card is positioned one below other and it make the gameplay terrible.
+- Gameplay, actually is impossible lose the game. Maybe a timer or max number of clicks can be added.
+- Refactory some part of the code. This should be done because some event listeners are added and removed to avoid user clicks in a certain point of game, actually some work arround is implanted. :')
+
+Finally, during this little adventure I get into a issue: "The event listeners are dispatch in some specific order ? Can I handle it ?" Last topic has a link wich explains it.
 
 ## Tricks JS
 
 ```js
-node.clone(true) // Clone element and siblings
+node.clone(true) // Clone element and descendants.
 node.remove() // Delete elemente
 node.after(elem) // Insert element after
 
