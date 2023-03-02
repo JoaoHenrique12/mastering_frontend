@@ -25,6 +25,7 @@ And of course:
 ### Yu-gi-oh
 
 Simple memory game based on yugioh cards.
+Link for web page: [Yu-gi-oh](https://joaohenrique12.github.io/mastering_frontend/yugioh/)
 
 ## About the license
 
