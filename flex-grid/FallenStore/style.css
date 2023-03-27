@@ -1,11 +1,18 @@
 @charset 'UTF-8';
 
 * {
+    border: 0px;
     margin: 0px;
     padding: 0px;
+    outline-color: transparent;
     list-style: none;
     font-size: 1.2rem;
     font-family: monospace;
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
 }
 
 a {
@@ -30,6 +37,7 @@ img#logo {
 
 .menu {
     display: flex;
+    margin-right: 20px;
 }
 .menu li {
     margin-left: 10px;
@@ -37,6 +45,31 @@ img#logo {
 
 .menu li a {
     padding: 10px;
+}
+
+@media screen and (max-width: 650px) {
+    .menu {
+        flex-direction: column;
+        display: flex;
+        margin: 0px;
+    }
+
+    .menu li {
+        margin-left: 10px;
+        margin-top: 10px;
+    }
+
+    .header {
+        flex-direction: column;
+    }
+
+    .flex {
+        margin: 0px;
+    }
+
+    .flex > div {
+        margin: 10px 0px;
+    }
 }
 
 h1 {
