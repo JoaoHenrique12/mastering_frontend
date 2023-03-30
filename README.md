@@ -27,6 +27,11 @@ And of course:
 Simple memory game based on yugioh cards.
 Link for web page: [Yu-gi-oh](https://joaohenrique12.github.io/mastering_frontend/yugioh/)
 
+### Flex Grid 
+
+Small projects with focus on GridLayout and FlexBox.
+Link for web page: [Flex-Grid](https://joaohenrique12.github.io/mastering_frontend/flex-grid/)
+
 ## About the license
 
 As you can see, I'm using this repository just to sharper my skills in frontend 
