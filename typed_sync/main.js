@@ -2,36 +2,32 @@ function trigger () {
     activate_typing_effect();
 }
 
-function activate_typing_effect() {
-    elements = document.querySelectorAll('.typed-text');
-    for( el of elements ){
-        txt = el.innerText;
-        el.innerText = '';
-        typing(el, txt);
-    }
+async function activate_typing_effect() {
+  const elements = document.querySelectorAll('.typed-text');
+  for (const el of elements) {
+    const txt = el.innerText;
+    el.innerText = '';
+    await typing(el, txt);
+  }
 }
 
-function typing (el, txt) {
-    let p = document.createElement('p');
-    p.style.display = 'inline';
-
-    let cursor = document.createElement('span');
-    cursor.classList.add('cursor');
-    cursor.innerText = '|';
-
-    el.appendChild(p);
-    el.appendChild(cursor);
-
+function typing(el, txt) {
+  return new Promise(resolve => {
+    el.style.display = 'block';
     let i = 0;
-    let speed = 70;
+    const speed = 40;
 
-    function typer(){
-        if (i < txt.length) {
-            p.innerText += txt.charAt(i);
-            i++;
-            setTimeout(typer, speed)
-        }
+    function typer() {
+      if (i < txt.length) {
+        el.innerHTML += txt.charAt(i);
+        i++;
+        setTimeout(typer, speed);
+      } else {
+        el.classList.add('final-typed-text');
+        resolve();
+      }
     }
 
     typer();
+  });
 }
