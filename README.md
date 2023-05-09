@@ -32,6 +32,11 @@ Link for web page: [Yu-gi-oh](https://joaohenrique12.github.io/mastering_fronten
 Small projects with focus on GridLayout and FlexBox.
 Link for web page: [Flex-Grid](https://joaohenrique12.github.io/mastering_frontend/flex-grid/)
 
+### Typed Sync
+
+How to create a typing effect to your site.
+Link for web page: [Typed Sync](https://joaohenrique12.github.io/mastering_frontend/typed_sync/)
+
 ## About the license
 
 As you can see, I'm using this repository just to sharper my skills in frontend 
