@@ -1,4 +1,4 @@
-# Mastering Frontend
+# Scratching Frontend
 
 ## About the repository
 
